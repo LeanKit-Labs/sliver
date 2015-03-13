@@ -7,10 +7,22 @@ I didn't see any existing Node solutions for Boundary's Flake or Twitter's Snowf
  * Lexicographically sortable
  * Coordination free-ish
 
+### Break down
+128 bit key comprised of the following:
+
+`{timestamp}{worker}{sequence}`
+
+ * 64 bit timestamp
+ * 48 bit worker id
+ * 16 bit sequence number
+
+The sequence number increments for each subsequent id requested within the same millisecond.
+
 ## API
 
-### Using MACAddress as seed
-If no seed is provided during start-up, sliver will attempt to create a seed from the MACAddress. While this is great, it also means that you can't have two processes using sliver independently and still guarantee unique ids (a bad thing).
+### Using MACAddress or HostName as seed
+If no seed is provided, Sliver will use either the MAC address or host name plus the process id as the seed. This should prevent duplicate seeds and id collisions, but be aware of any scenario that might cause duplicate MACs or host names in your environment.
+
 ```javascript
 
 // reading the MAC address is async, hence the ready call.

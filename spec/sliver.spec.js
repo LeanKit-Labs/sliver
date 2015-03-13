@@ -29,11 +29,7 @@ describe( 'when starting up without a seed', function() {
 	describe( 'when getting an id', function() {
 		var id;
 		before( function() {
-			var start = process.hrtime();
 			id = sliver.getId();
-			var diff = process.hrtime( start );
-			console.log( id );
-			console.log( ( diff[ 0 ] * 1e9 + diff[ 1 ] ) / 1000000 );
 		} );
 
 		it( 'should get a valid id', function() {
@@ -41,16 +37,16 @@ describe( 'when starting up without a seed', function() {
 		} );
 	} );
 
-	describe( 'when getting a bunch of ids', function() {
-		var diff,
-			list = [],
-			idCount = 10000;
-		this.timeout( 100000000 );
+	describe( 'when getting 10,000 ids', function() {
+		var diff;
+		var list = [];
+		var idCount = 10000;
+		this.timeout( 10000 );
 		before( function( done ) {
 			var start = process.hrtime();
-			for( i = 0; i < idCount; i++ ) {
-				list.push( sliver.getId() );	
-				if( list.length == idCount ) {
+			for (i = 0; i < idCount; i++) {
+				list.push( sliver.getId() );
+				if ( list.length == idCount ) {
 					diff = process.hrtime( start );
 					diff = ( diff[ 0 ] * 1e9 + diff[ 1 ] ) / 1000000;
 					done();
@@ -58,14 +54,14 @@ describe( 'when starting up without a seed', function() {
 			}
 		} );
 
-		it( 'should get a valid id', function() {
-			console.log( list.slice( 0, 20 ) );
-			console.log( diff );
-			console.log( _.unique( list ).length );
-			diff.should.be.lessThan( idCount / 5 );
+		it( 'should produce only unique ids', function() {
 			_.unique( list ).length.should.equal( idCount );
 		} );
-	} ); 
+
+		it( 'should average 15 ids/ms', function() {
+			( idCount / diff ).should.be.greaterThan( 15 );
+		} );
+	} );
 } );
 
 describe( 'when starting with a seed', function() {
@@ -76,7 +72,7 @@ describe( 'when starting with a seed', function() {
 		sliver = require( '../src/sliver.js' )( 'burple', done );
 	} );
 
-	it( 'should seed from seed value Address', function() {
+	it( 'should seed from seed value', function() {
 		sliver.seed.length.should.equal( 6 );
 	} );
 

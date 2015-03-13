@@ -1,4 +1,7 @@
 demo/
 tmp/
 node_modules/
-build/
+log/
+spec/
+plato/
+coverage/
