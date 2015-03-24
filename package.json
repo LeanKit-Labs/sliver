@@ -1,23 +1,35 @@
 {
   "name": "sliver",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "128-bit, k-ordered, lexicographically sortable, base 62, coordination free id generation for Node",
   "main": "src/sliver.js",
   "scripts": {
     "test": "gulp test"
   },
   "author": "Alex Robson",
-  
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT License - http://opensource.org/licenses/MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LeanKit-Labs/sliver"
+  },
+  "keywords": [
+    "base 62",
+    "base 36",
+    "128 bit",
+    "flake"
+  ],
   "devDependencies": {
-    "should": "~3.2.0-beta1",
-    "gulp-mocha": "~0.4.1",
-    "gulp": "~3.5.6"
+    "biggulp": "~0.0.2",
+    "gulp": "~3.8.11",
+    "should": "^5.2.0"
   },
   "dependencies": {
     "lodash": "~2.4.1",
     "getmac": "~1.0.6",
     "murmurhash3": "~0.2.3",
-    "basejump": "~0.0.1"
+    "basejump": "~0.1.1"
   }
 }
