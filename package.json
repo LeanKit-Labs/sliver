@@ -23,7 +23,8 @@
   ],
   "devDependencies": {
     "biggulp": "~0.0.2",
-    "gulp": "~3.8.11"
+    "gulp": "~3.8.11",
+    "should": "^5.2.0"
   },
   "dependencies": {
     "lodash": "~2.4.1",
