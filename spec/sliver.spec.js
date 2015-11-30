@@ -58,8 +58,8 @@ describe( 'when starting up without a seed', function() {
 			_.unique( list ).length.should.equal( idCount );
 		} );
 
-		it( 'should average 15 ids/ms', function() {
-			( idCount / diff ).should.be.greaterThan( 15 );
+		it( 'should average 10 ids/ms', function() {
+			( idCount / diff ).should.be.greaterThan( 10 );
 		} );
 	} );
 } );

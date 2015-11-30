@@ -1,7 +1,7 @@
 var _ = require( 'lodash' );
 var getMac = require( 'getmac' ).getMac;
 var jump = require( 'basejump' );
-var murmur = require( 'murmurhash3' );
+var fh = require( 'farmhash' );
 var generator;
 var instanceCount = 0;
 
@@ -36,8 +36,8 @@ function getWorkerIdFromEnvironment( done ) {
 }
 
 function getNodeBytesFromSeed( seed ) {
-	var murm = murmur.murmur32Sync( [ seed.toString(), process.pid ].join( '|' ) );
-	bytes = longToBytes( murm ).splice( 2 );
+	var hash = fh.hash32( [ seed.toString(), process.pid ].join( '|' ) );
+	bytes = longToBytes( hash ).splice( 2 );
 	return bytes;
 }
 
