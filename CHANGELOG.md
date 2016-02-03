@@ -1,5 +1,11 @@
 ## Changelog
 
+## 0.2.*
+
+### 0.2.0
+ * Update basejump version to support Node 5.
+ * Switch to farmhash (faster and Node 5 friendly).
+
 ## 0.1.*
 
 ### 0.1.0
